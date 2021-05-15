@@ -1,0 +1,7 @@
+.Layout {
+  height: 100vh;
+  max-width: 960px;
+  padding: 0 30px;
+  margin: 0 auto;
+  overflow: hidden;
+}

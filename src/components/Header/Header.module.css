@@ -1,0 +1,16 @@
+.Header {
+  padding: 30px 0;
+}
+
+.Header .GameData {
+  display: flex;
+  grid-gap: 30px;
+  gap: 30px;
+  justify-content: flex-end;
+
+}
+
+.Header .GameData  span { 
+  background: #00000036;
+  padding: 10px;
+}
