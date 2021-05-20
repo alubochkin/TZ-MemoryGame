@@ -7,10 +7,31 @@
   grid-gap: 30px;
   gap: 30px;
   justify-content: flex-end;
-
 }
 
 .Header .GameData  span { 
   background: #00000036;
   padding: 10px;
+}
+
+@media (max-width: 600px) { 
+
+  .Header-module__Header--JI6Qw {
+    padding: 10px 0;
+  }
+
+  .Header .GameData {
+    display: flex;
+    justify-content: space-between;
+    gap: 0;
+  }
+
+  .Header-module__Header--JI6Qw {
+    padding: 10px 0;
+  }
+
+  .Header .GameData  span { 
+    font-size: 13px;
+    padding: 5px;
+  }
 }

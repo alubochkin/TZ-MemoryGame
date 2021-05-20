@@ -1,4 +1,4 @@
-const icons =  {
+const icons = {
   1: 'cake',
   2: 'business_center',
   3: 'camera_alt',
@@ -17,7 +17,6 @@ const icons =  {
   16: 'mood',
   17: 'watch',
   18: 'vpn_key',
-
-}
+};
 
 export default icons;
