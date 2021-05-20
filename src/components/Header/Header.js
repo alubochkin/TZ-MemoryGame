@@ -1,21 +1,19 @@
 import React from 'react';
-import classes from './Header.module.css'
+import classes from './Header.module.css';
 
-export const Header = (props) => {
-  return (
-    <div className={classes.Header}>
+const Header = ({ isGame, timer, coupleCard }) => (
+  <div className={classes.Header}>
+    {isGame ? (
+      <div className={classes.GameData}>
+        <span>
+          Прошло <b> {timer} </b> сек.
+        </span>
+        <span>
+          Открыто <b>{coupleCard}</b> пар карточек из<b>18</b>
+        </span>
+      </div>
+    ) : null}
+  </div>
+);
 
-
-    {
-      props.isGame 
-        ? <div className={classes.GameData}>
-            <span>Прошло <b>{props.timer}</b> сек</span>
-            <span>Открыто <b>{props.coupleCard}</b> пар карточек из <b>18</b></span>
-          </div>
-        : null
-    }
-
-      
-    </div>
-  )
-}
+export default Header;

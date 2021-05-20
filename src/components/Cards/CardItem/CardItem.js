@@ -1,30 +1,33 @@
+/* eslint-disable jsx-a11y/interactive-supports-focus */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import classes from './CardItem.module.css';
 
-export const CardItem = (props) => {
+const CardItem = ({
+  open, guessedCard, openHandler, icon,
+}) => {
+  const cls = [classes.CardItem];
 
-
-	const cls = [classes.CardItem]
-
-	if (props.open) {
-		cls.push(classes.open)
-	}
-  if (props.guessedCard) {
-		cls.push(classes.guessedCard)
-	}
-
+  if (open) {
+    cls.push(classes.open);
+  }
+  if (guessedCard) {
+    cls.push(classes.guessedCard);
+  }
 
   return (
-    <div 
+    <div
       className={cls.join(' ')}
-      onClick={props.openHandler}
+      role='link'
+      onClick={openHandler}
     >
-        <div className={classes.front}></div>
+      <div className={classes.front} />
 
-        <div className={classes.back}>
-          <i className="material-icons">{props.icon}</i>
-        </div>
-            
+      <div className={classes.back}>
+        <i className='material-icons'>{icon}</i>
+      </div>
     </div>
-  )
-}
+  );
+};
+
+export default CardItem;
