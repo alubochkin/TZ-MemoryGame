@@ -1,8 +1,8 @@
-/* eslint-disable no-console */
-/* eslint-disable no-return-assign */
 /* eslint-disable no-param-reassign */
+/* eslint-disable no-return-assign */
+
 import { makeAutoObservable, runInAction, configure } from 'mobx';
-import { cardCreated } from '../helpers/auxiliary';
+import cardCreated from '../helpers/auxiliary';
 
 configure({
   enforceActions: 'never',
@@ -29,7 +29,7 @@ class Store {
   gameStart() {
     this.cards = cardCreated();
     this.gameControl.isGame = true;
-    this.timerGame();
+    // this.timerGame();
   }
 
   gameOver() {
@@ -51,24 +51,24 @@ class Store {
     this.coupleCard = [];
   }
 
-  timerGame() {
-    if (this.gameControl.isGame) {
-      const timerId = setInterval(() => {
-        if (!this.gameControl.isGame) clearInterval(timerId);
+  // timerGame() {
+  //   if (this.gameControl.isGame) {
+  //     const timerId = setInterval(() => {
+  //       if (!this.gameControl.isGame) clearInterval(timerId);
 
-        this.gameControl.time += 1;
-      }, 1000);
-    }
-  }
+  //       this.gameControl.time += 1;
+  //     }, 1000);
+  //   }
+  // }
 
   countDownOpenCard(coupleCard = null) {
-    let dellay = 3000;
+    let dellay = 1000;
 
     if (coupleCard) {
       dellay = 500;
 
       this.coupleCard.push(
-        coupleCard.map((cardItem) => Object.assign(cardItem, (cardItem.guessedCard = true))),
+        coupleCard.map((cardItem) => Object.assign(cardItem, cardItem.guessedCard = true)),
       );
 
       this.cards.map((cardItem) => Object.assign(cardItem, coupleCard));
@@ -82,7 +82,10 @@ class Store {
         }, dellay);
       });
 
-      promise.then((id) => clearTimeout(id)).then(() => (this.isOpenCard = []));
+      promise.then((id) => clearTimeout(id))
+        .then(() => (this.isOpenCard = []))
+        .then(() => this.cards
+          .map((cardItem) => Object.assign(cardItem, (cardItem.click = true))));
     });
   }
 
@@ -95,10 +98,13 @@ class Store {
       this.isOpenCard.push(card);
 
       if (this.isOpenCard.length === 2) {
+        this.cards
+          .map((cardItem) => Object.assign(cardItem, (cardItem.click = false)));
         if (this.isOpenCard[0].cardName === this.isOpenCard[1].cardName) {
           this.countDownOpenCard(this.isOpenCard);
         } else {
           this.countDownOpenCard();
+          this.isOpenCard = [];
         }
       }
     }

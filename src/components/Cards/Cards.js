@@ -1,23 +1,19 @@
-/* eslint-disable no-empty */
-/* eslint-disable no-unused-expressions */
-/* eslint-disable no-undef */
-/* eslint-disable no-console */
-/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import { observer } from 'mobx-react-lite';
-// import { toJS } from 'mobx';
 import CardItem from './CardItem/CardItem';
 import classes from './Cards.module.css';
 import icons from '../../helpers/arrayIconsForCards';
 
 const Cards = observer(({ store }) => {
+  //
   const cardControlHandler = (card) => {
-    if (store.isOpenCard.length === 0) {
-      card.guessedCard ? null : store.openCard(card);
-    }
-
-    if (store.isOpenCard[0]?.id !== card.id) {
-      card.guessedCard ? null : store.openCard(card);
+    if (card.click) {
+      if (store.isOpenCard.length === 0 && !card.open) {
+        store.openCard(card);
+      }
+      if (store.isOpenCard[0]?.id !== card.id && !card.open) {
+        store.openCard(card);
+      }
     }
   };
 
@@ -26,7 +22,7 @@ const Cards = observer(({ store }) => {
       <div className={classes.CardsContainer}>
         {store?.cards.map((card) => (
           <CardItem
-            openHandler={() => cardControlHandler(card)}
+            openHandler={!card.guessedCard ? () => cardControlHandler(card) : null}
             icon={icons[+card.cardName]}
             key={card.id}
             cardName={card.cardName}
@@ -39,5 +35,4 @@ const Cards = observer(({ store }) => {
   );
 });
 
-// eslint-disable-next-line react-hooks/rules-of-hooks
 export default Cards;

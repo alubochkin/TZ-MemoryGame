@@ -1,7 +1,4 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/react-in-jsx-scope */
-// eslint-disable-next-line no-unused-vars
-// import react from 'react';
+import React from 'react';
 import { observer } from 'mobx-react-lite';
 import Cards from './components/Cards/Cards';
 import StartGame from './components/StartGame/StartGame';
