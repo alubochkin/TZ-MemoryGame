@@ -1,10 +1,8 @@
-/* eslint-disable jsx-a11y/interactive-supports-focus */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import classes from './CardItem.module.css';
 
 const CardItem = ({
-  open, guessedCard, openHandler, icon,
+  open, guessedCard, openHandler, icon, id,
 }) => {
   const cls = [classes.CardItem];
 
@@ -18,7 +16,9 @@ const CardItem = ({
   return (
     <div
       className={cls.join(' ')}
-      role='link'
+      role='button'
+      tabIndex={id}
+      onKeyPress={openHandler}
       onClick={openHandler}
     >
       <div className={classes.front} />

@@ -25,6 +25,7 @@ const Cards = observer(({ store }) => {
             openHandler={!card.guessedCard ? () => cardControlHandler(card) : null}
             icon={icons[+card.cardName]}
             key={card.id}
+            id={card.id}
             cardName={card.cardName}
             open={card.open}
             guessedCard={card.guessedCard}
